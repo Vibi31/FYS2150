@@ -40,6 +40,7 @@ def avmagnet(a_para, a_orto):                 #avmagnetiseringsfaktor, tar in ak
 
     print('parallel avmagnetiseringsfaktor', D_para)
     print('ortogonal avmagnetiseringsfaktor', D_orto)
+    print()
     
     return D_orto, D_para
 
@@ -60,19 +61,14 @@ verdet konstant (V), lengde (L), magnetisk fluks (B), vinkel (theta)
 V = theta/(B*L)
 """
 
-def verdet(B, theta, L, uncert): #magnetisk-fluks, vinkel, flintglass lengde, lengde usikkerhet
-
+def verdet(B, theta, L, uncert): #magnetisk-fluks, vinkel, flintglass lengde (mm), lengde usikkerhet
     lin = linregress(B*L, theta)   #theta som funksjon av magnetisk-fluks
     verdet_konstant = lin.slope 
     verdet_deviation = lin.stderr
 
-    print('verdet konstant (Tmm):', verdet_konstant)
-    print('verdet konstant usikkerhet (Tmm):', verdet_deviation)
-    print()
     print('verdet konstant (Tm):', verdet_konstant*1000)
     print('verdet konstant usikkerhet (Tm):', verdet_deviation*1000)
 
 
 #oppgave 7
 verdet(B, theta, 30, 1)
-#
