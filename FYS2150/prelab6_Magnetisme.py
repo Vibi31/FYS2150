@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from numpy import log, sqrt
 
-"""open excel file and append values into two lists"""
+"""open csv file and append values into two lists"""
 
 B = []                                       #magnetic flux list 
 theta = []                                   #angle 
