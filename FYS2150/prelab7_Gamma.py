@@ -38,7 +38,10 @@ def GM_effectivity(radius, distans, Aktivitet, bakgrunn, total_kv):
     return effectivity
 
 print('effectivity = ',GM_effectivity(r, d, A, Nb, Nr),'%')
-# effectivity =  84.00000000000001
+# effectivity =  0.84 %
+
+
+
 
 #oppgave 5
 
@@ -52,7 +55,7 @@ reg = linregress(skjerming, n)
 
 mu = log(np.sum(X_vals))/np.sum(Y_vals)
 print('mu =', mu)
-
+print('',log(0.05) / 20)
 print('delta mu =', sqrt((np.std(X_vals)/np.sum(X_vals))**2  +  (np.std(Y_vals)/np.sum(Y_vals))))
 
 
@@ -72,23 +75,22 @@ print('usikkerhet på z =', 0.07*abs((log(I0/I)/(-mu))*1000))
 #bruker ligning (6), side 4
 # E = delta_E * I + E0    mellom cesium og naturium
 
-def gamme_E(E, I):
-    Delta_E = E/I
-    E_0 = E - Delta_E*I
-    return E_0, Delta_E
-I_cs, I_na  = 410, 773 
-E0_cs, E0_na = 662, 1275
-E_cs, E_na = 512, 546
+def gamme_E(I, E):
+    lin = linregress(I,E)
+    print('dispersion',lin.slope)
+    print('nullpunkts energi', lin.intercept)
+    
+I = [410, 773] 
+E = [662, 1275]
 
-print('gamma energi til Cs =', gamme_E(E0_cs, I_cs))
-print('gamma energi til Na =', gamme_E(E0_na, I_na))
+gamme_E(I, E)
+
 
 #delta_E = (E - E0)/I
 def dispersjon(E, E0):
     return E-E0
 #????????????????? 
 
-print('cs', (662-512)/I_cs)
-print('na', (511-1275)/I_na)
+
 
 
