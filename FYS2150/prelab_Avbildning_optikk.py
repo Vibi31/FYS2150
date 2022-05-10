@@ -18,11 +18,29 @@ B = [1.03961212, 0.231792344, 1.01046945]
 C = [0.00600069867, 0.0200179144, 103.560653]   #konverterer fra micro til nano ve *1000
 disp(520, B, C)
 
-def sphere(d_x, d): #finner krumningsradien R, d_x = dobbel x, d = forhøyningen
+def R(d_x, d): #finner krumningsradien R, d_x = dobbel x, d = forhøyningen
     x = d_x/2
     R = (x**2 + d**2)/(2*d)
     print('R =', R)
     return R
 
-sphere(26, 0.5) #begge i mm
+R = R(31, 0.4) #begge i mm
 
+
+def fokallengde(R, lambd, dispersjon): #også kalles for brennvidde (krumningsradien R, lamda, dispersjon)
+    #funker for bikonvekse linser der R2 = -R1 = R
+    R1 = -R
+    R2 = -R1
+    disp = (dispersjon - 1)*(1/R1 - 1/R2)
+    print(abs(disp))
+    n = dispersjon
+    fokallengde = R/(2*(n-1))
+    print('fokallengde =',fokallengde)
+    return fokallengde
+
+fokallengde(270, 520, R)
+
+def bilde_avstand(s, f):
+    avstand = f*s/(s-f)
+    print('s_merkert (avstand) =', avstand)
+    return avstand
